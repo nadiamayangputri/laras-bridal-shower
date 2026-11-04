@@ -32,7 +32,8 @@
   --wave-h: clamp(28px, 5.56vw, 80px); /* matches the 1440x80 SVG ratio */
 
   /* Size */
-  --timeline-item-width: 350px;
+  --timeline-item-width-desktop: 350px;
+  --timeline-item-width-mobile: 200px;
   --slideshow-width: 75vw;
 }
 
@@ -304,7 +305,7 @@ button { font: inherit; color: inherit; }
 .timeline__item {
   position: relative;
   display: grid;
-  grid-template-columns: var(--timeline-item-width) 1fr;
+  grid-template-columns: var(--timeline-item-width-desktop) 1fr;
   gap: 0 44px;
   padding-bottom: 40px;
 }
@@ -315,7 +316,7 @@ button { font: inherit; color: inherit; }
   position: absolute;
   top: 6px;
   bottom: 0;
-  left: calc(var(--timeline-item-width) + 22px);
+  left: calc(var(--timeline-item-width-desktop) + 22px);
   width: 1px;
   background: var(--color-line);
 }
@@ -326,7 +327,7 @@ button { font: inherit; color: inherit; }
   content: "";
   position: absolute;
   top: 2px;
-  left: calc(var(--timeline-item-width) + 22px - 4px);
+  left: calc(var(--timeline-item-width-desktop) + 22px - 4px);
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -767,9 +768,9 @@ button { font: inherit; color: inherit; }
   .hero__card { grid-template-columns: 1fr; min-height: 0; }
   .hero__media { aspect-ratio: 4 / 5; min-height: 0; }
 
-  .timeline__item { grid-template-columns: 110px 1fr; gap: 0 36px; }
-  .timeline__item::before { left: calc(110px + 18px); }
-  .timeline__item::after { left: calc(110px + 18px - 4px); }
+  .timeline__item { grid-template-columns: var(--timeline-item-width-mobile) 1fr; gap: 0 36px; }
+  .timeline__item::before { left: calc(var(--timeline-item-width-mobile) + 18px); }
+  .timeline__item::after { left: calc(var(--timeline-item-width-mobile) + 18px - 4px); }
   .timeline__item:last-child { padding-bottom: 32px; }
 
   .mood__header,
