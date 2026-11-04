@@ -784,7 +784,6 @@ button { font: inherit; color: inherit; }
   .modal { padding: 12px; }
   .modal__dialog { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
   .modal__media { aspect-ratio: 4 / 3; }
-  .modal__content { overflow: visible; }
 
   .footer__inner { flex-direction: column; text-align: center; gap: 6px; }
 }
