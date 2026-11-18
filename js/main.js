@@ -167,6 +167,20 @@
     const titleEl = slideshowEl.querySelector('.slideshow__title');
     let slideshow = null;
 
+    // load the current photo plus the ones either side of it
+    const loadNearby = (swiper) => {
+      const { slides, activeIndex } = swiper;
+
+      [-1, 0, 1, 2].forEach((offset) => {
+        const slide = slides[(activeIndex + offset + slides.length) % slides.length];
+        const img = slide && slide.querySelector('img[data-src]');
+        if (!img) return;
+
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+    };
+
     const destroySlideshow = () => {
       if (slideshow) slideshow.destroy(true, true);
       slideshow = null;
@@ -185,8 +199,9 @@
           const slide = document.createElement('div');
           slide.className = 'swiper-slide slideshow__slide';
 
+          // src is set by loadNearby so a big folder doesn't download all at once
           const img = document.createElement('img');
-          img.src = url;
+          img.dataset.src = url;
           img.alt = `${title}, photo ${index + 1} of ${images.length}`;
 
           slide.append(img);
@@ -209,7 +224,13 @@
           },
           pagination: {
             el: slideshowEl.querySelector('.slideshow__pagination'),
+            // too many dots won't fit under the image, so show "3 / 46" instead
+            type: images.length > 8 ? 'fraction' : 'bullets',
             clickable: true,
+          },
+          on: {
+            init: loadNearby,
+            slideChange: loadNearby,
           },
         });
       },

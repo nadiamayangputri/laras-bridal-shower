@@ -739,6 +739,12 @@ button { font: inherit; color: inherit; }
   width: auto; /* Swiper's stylesheet sets 100% */
 }
 
+.slideshow__footer .slideshow__pagination.swiper-pagination-fraction {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
 .slideshow__pagination .swiper-pagination-bullet {
   width: 6px;
   height: 6px;
