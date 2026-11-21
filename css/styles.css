@@ -747,6 +747,73 @@ button { font: inherit; color: inherit; }
 .slideshow__pagination .swiper-pagination-bullet-active { width: 18px; border-radius: 3px; opacity: 1; }
 
 /* ==========================================================================
+   Music toggle (fixed bottom right, stays above the modals)
+   ========================================================================== */
+.music-toggle {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 110;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-plum);
+  color: var(--color-white);
+  box-shadow: 0 6px 20px rgba(47, 35, 38, 0.25);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.music-toggle:hover { background: var(--color-plum-dark); transform: scale(1.05); }
+.music-toggle:focus-visible { outline: 2px solid var(--color-white); outline-offset: 3px; }
+
+.music-toggle svg {
+  grid-area: 1 / 1;
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.music-toggle__play { fill: currentColor; margin-left: 3px; }
+.music-toggle__pause { fill: none; display: none; }
+
+.music-toggle.is-playing .music-toggle__play { display: none; }
+.music-toggle.is-playing .music-toggle__pause { display: block; }
+
+/* soft ring that pulses while the music plays */
+.music-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--color-plum);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-toggle.is-playing::after { animation: music-pulse 2s ease-out infinite; }
+
+@keyframes music-pulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle.is-playing::after { animation: none; }
+}
+
+@media (max-width: 767px) {
+  .music-toggle { right: 16px; bottom: 16px; width: 46px; height: 46px; }
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1023px) {

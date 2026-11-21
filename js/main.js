@@ -245,4 +245,52 @@
       button.addEventListener('click', () => slideshowModal.open(button));
     });
   }
+
+  /* ------------------------------------------------------------------------
+     Background music
+     Browsers usually block sound until the visitor interacts with the page,
+     so if autoplay is refused it starts on their first click, tap or key.
+     ------------------------------------------------------------------------ */
+  const audio = document.querySelector('.music__audio');
+  const musicToggle = document.querySelector('.music-toggle');
+
+  if (audio && musicToggle) {
+    const unlockEvents = ['pointerdown', 'keydown', 'touchstart'];
+    let pausedByVisitor = false;
+
+    const updateToggle = () => {
+      const playing = !audio.paused;
+      musicToggle.classList.toggle('is-playing', playing);
+      musicToggle.setAttribute('aria-pressed', String(playing));
+      musicToggle.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
+    };
+
+    const removeUnlock = () => unlockEvents.forEach((type) => document.removeEventListener(type, unlock));
+
+    const play = () => audio.play().then(removeUnlock).catch(() => {});
+
+    // first interaction anywhere on the page starts the music (unless it was the toggle itself)
+    function unlock(event) {
+      if (pausedByVisitor || musicToggle.contains(event.target)) return;
+      play();
+    }
+
+    audio.volume = 0.6;
+    audio.addEventListener('play', updateToggle);
+    audio.addEventListener('pause', updateToggle);
+
+    musicToggle.addEventListener('click', () => {
+      removeUnlock();
+      if (audio.paused) {
+        pausedByVisitor = false;
+        play();
+      } else {
+        pausedByVisitor = true;
+        audio.pause();
+      }
+    });
+
+    unlockEvents.forEach((type) => document.addEventListener(type, unlock));
+    play();
+  }
 })();
