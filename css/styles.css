@@ -687,13 +687,21 @@ button { font: inherit; color: inherit; }
 
 .slideshow__swiper { border-radius: var(--radius-sm); }
 
-.slideshow__slide { background: var(--color-ink); }
+/* Each photo is shrunk to fit inside it at its own ratio, so nothing gets cropped. */
+.slideshow__slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min(var(--slideshow-width) * 1.25, 78vh);
+  height: min(var(--slideshow-width) * 1.25, 78svh);
+}
 
-/* width stays at 75vw; the height is capped so it always fits the screen */
 .slideshow__slide img {
-  width: 100%;
-  height: min(calc(var(--slideshow-width) * 0.625), 78vh);
-  object-fit: cover;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--radius-sm);
 }
 
 /* arrows are centred in the space either side of the image */
