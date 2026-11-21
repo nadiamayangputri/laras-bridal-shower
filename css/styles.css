@@ -355,13 +355,6 @@ button { font: inherit; color: inherit; }
 .timeline__item:hover .timeline__img { filter: brightness(1.08); }
 .timeline__item:hover .timeline__title { color: var(--color-plum); }
 
-.timeline__time {
-  margin-bottom: 8px;
-  color: var(--color-plum);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-}
-
 .timeline__title {
   margin-bottom: 10px;
   font-size: clamp(22px, 2.2vw, 28px);
