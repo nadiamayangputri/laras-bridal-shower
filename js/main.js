@@ -273,7 +273,9 @@
   const musicToggle = document.querySelector('.music-toggle');
 
   if (audio && musicToggle) {
-    const unlockEvents = ['pointerdown', 'keydown', 'touchstart'];
+    // browsers only allow sound after some of these (phones need the end of a tap),
+    // so listen for all of them until one works
+    const unlockEvents = ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'];
     let pausedByVisitor = false;
 
     const updateToggle = () => {
@@ -307,8 +309,10 @@
         }
       });
 
+      // bring the music back afterwards, unless the visitor had turned it off
+      // (this also starts it if the browser blocked autoplay and the video came first)
       const resumeAfterVideo = () => {
-        if (pausedForVideo && !pausedByVisitor) play();
+        if (!pausedByVisitor) play();
         pausedForVideo = false;
       };
 
