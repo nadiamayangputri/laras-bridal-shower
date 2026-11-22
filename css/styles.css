@@ -551,7 +551,7 @@ button { font: inherit; color: inherit; }
 .closing__inner .body-xs { margin-bottom: 22px; }
 
 .closing__hosts {
-  margin-top: 28px;
+  margin-bottom: 28px;
   font-family: var(--font-serif);
   font-size: 18px;
   font-style: italic;
@@ -631,17 +631,34 @@ button { font: inherit; color: inherit; }
   object-fit: cover;
 }
 
-.modal__content {
-  overflow-y: auto;
-  padding: clamp(32px, 4vw, 56px);
+/* Gallery letter modal: taller than before so the handwriting stays readable */
+#gallery-modal .modal__dialog {
+  max-width: 1120px;
+  height: min(90vh, 820px);
+  max-height: none;
 }
 
-.modal__title { margin-bottom: 20px; font-size: clamp(30px, 3.4vw, 42px); }
+#gallery-modal .modal__dialog.has-no-letter {
+  grid-template-columns: 1fr;
+  max-width: 560px;
+}
 
-.modal__content p:not(.eyebrow) {
-  margin-bottom: 14px;
-  color: var(--color-ink-soft);
-  font-size: 14px;
+/* the scanned letter scrolls inside its column if it's taller than the dialog */
+.modal__letter {
+  min-height: 0;
+  overflow-y: auto;
+  padding: clamp(20px, 3vw, 36px);
+}
+
+.modal__letter[hidden] { display: none; }
+
+.modal__letter-link { display: block; cursor: zoom-in; }
+
+.modal__letter-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 18px rgba(47, 35, 38, 0.12);
 }
 
 .modal__close {
@@ -846,6 +863,11 @@ button { font: inherit; color: inherit; }
   .modal { padding: 12px; }
   .modal__dialog { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
   .modal__media { aspect-ratio: 4 / 3; }
+
+  /* stacked: photo on top, letter below, the whole dialog scrolls */
+  #gallery-modal .modal__dialog { display: block; height: auto; max-height: 92vh; }
+  #gallery-modal .modal__media { aspect-ratio: 4 / 5; }
+  .modal__letter { overflow: visible; padding: 16px; }
 
   .footer__inner { flex-direction: column; text-align: center; gap: 6px; }
 }

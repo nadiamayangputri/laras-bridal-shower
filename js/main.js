@@ -137,17 +137,35 @@
 
   if (galleryEl) {
     const modalImg = galleryEl.querySelector('.modal__img');
-    const modalTitle = galleryEl.querySelector('.modal__title');
+    const dialog = galleryEl.querySelector('.modal__dialog');
+    const letterPanel = galleryEl.querySelector('.modal__letter');
+    const letterLink = galleryEl.querySelector('.modal__letter-link');
+    const letterImg = galleryEl.querySelector('.modal__letter-img');
 
     const galleryModal = createModal(galleryEl, {
       onOpen(trigger) {
+        // "From Ale" -> "from Ale"
+        const from = trigger.querySelector('.gallery__caption').textContent.trim().replace(/^From/, 'from');
+        const letter = trigger.dataset.letter;
+
         modalImg.src = trigger.dataset.img;
         modalImg.alt = trigger.querySelector('img').alt;
-        modalTitle.textContent = trigger.dataset.title;
-        galleryEl.querySelector('.modal__content').scrollTop = 0;
+        galleryEl.setAttribute('aria-label', `Letter to the bride ${from}`);
+
+        // a card without a letter yet just shows the photo
+        dialog.classList.toggle('has-no-letter', !letter);
+        letterPanel.hidden = !letter;
+        if (letter) {
+          letterImg.src = letter;
+          letterImg.alt = `Handwritten letter ${from}`;
+          letterLink.href = letter;
+        }
+        letterPanel.scrollTop = 0;
+        dialog.scrollTop = 0;
       },
       onClosed() {
         modalImg.src = '';
+        letterImg.src = '';
       },
     });
 

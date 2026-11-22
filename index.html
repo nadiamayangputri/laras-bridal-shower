@@ -364,45 +364,44 @@
 
         <ul class="gallery__grid">
           <li>
-            <button class="gallery__item" type="button" data-title="The girls, always" data-img="https://picsum.photos/seed/laras-g1/1000/1100">
-              <img src="https://picsum.photos/seed/laras-g1/600/400" alt="Lorem ipsum placeholder" loading="lazy" width="600" height="400">
+            <button class="gallery__item" type="button" data-img="assets/images/letters/ale/laras-ale.jpeg" data-letter="assets/images/letters/ale/letter-ale.jpeg">
+              <img src="assets/images/letters/ale/laras-ale.jpeg" alt="Laras and Ale" loading="lazy" width="960" height="1280">
               <span class="gallery__caption">From Ale</span>
             </button>
           </li>
           <li>
-            <button class="gallery__item" type="button" data-title="A love worth celebrating" data-img="https://picsum.photos/seed/laras-g2/1000/1100">
-              <img src="https://picsum.photos/seed/laras-g2/600/400" alt="Lorem ipsum placeholder" loading="lazy" width="600" height="400">
+            <button class="gallery__item" type="button" data-img="assets/images/letters/annisa/laras-ncung.jpg" data-letter="assets/images/letters/annisa/letter-ncung.jpg">
+              <img src="assets/images/letters/annisa/laras-ncung.jpg" alt="Laras and Annisa" loading="lazy" width="1600" height="1378">
               <span class="gallery__caption">From Annisa</span>
             </button>
           </li>
           <li>
-            <button class="gallery__item" type="button" data-title="Flowers for no reason" data-img="https://picsum.photos/seed/laras-g3/1000/1100">
-              <img src="https://picsum.photos/seed/laras-g3/600/400" alt="Lorem ipsum placeholder" loading="lazy" width="600" height="400">
+            <button class="gallery__item" type="button" data-img="assets/images/letters/bella/laras-bella.jpg" data-letter="assets/images/letters/bella/letter-bella.jpg">
+              <img src="assets/images/letters/bella/laras-bella.jpg" alt="Laras and Bella" loading="lazy" width="1196" height="1600">
               <span class="gallery__caption">From Bella</span>
             </button>
           </li>
           <li>
-            <button class="gallery__item" type="button" data-title="Our kind of happy hour" data-img="https://picsum.photos/seed/laras-g4/1000/1100">
-              <img src="https://picsum.photos/seed/laras-g4/600/400" alt="Lorem ipsum placeholder" loading="lazy" width="600" height="400">
+            <button class="gallery__item" type="button" data-img="assets/images/letters/elsa/laras-elsa.jpg" data-letter="assets/images/letters/elsa/letter-elsa.jpg">
+              <img src="assets/images/letters/elsa/laras-elsa.jpg" alt="Laras and Elsa" loading="lazy" width="1568" height="1600">
               <span class="gallery__caption">From Elsa</span>
             </button>
           </li>
           <li>
-            <button class="gallery__item" type="button" data-title="The easiest yes" data-img="https://picsum.photos/seed/laras-g5/1000/1100">
-              <img src="https://picsum.photos/seed/laras-g5/600/400" alt="Lorem ipsum placeholder" loading="lazy" width="600" height="400">
+            <button class="gallery__item" type="button" data-img="assets/images/letters/nadia/laras-nadia.jpg" data-letter="assets/images/letters/nadia/letter-nadia.jpg">
+              <img src="assets/images/letters/nadia/laras-nadia.jpg" alt="Laras and Nadia" loading="lazy" width="1200" height="1600">
               <span class="gallery__caption">From Nadia</span>
             </button>
           </li>
           <li>
-            <button class="gallery__item" type="button" data-title="More of this, forever" data-img="https://picsum.photos/seed/laras-g6/1000/1100">
-              <img src="https://picsum.photos/seed/laras-g6/600/400" alt="Lorem ipsum placeholder" loading="lazy" width="600" height="400">
+            <button class="gallery__item" type="button" data-img="assets/images/letters/sakina/laras-sakina.jpg" data-letter="assets/images/letters/sakina/letter-sakina.jpg">
+              <img src="assets/images/letters/sakina/laras-sakina.jpg" alt="Laras and Sakina" loading="lazy" width="1200" height="1600">
               <span class="gallery__caption">From Sakina</span>
             </button>
           </li>
         </ul>
 
         <div class="gallery__footer">
-          <p class="body-xs">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
           <p class="body-xs accent">♡</p>
         </div>
       </div>
@@ -450,7 +449,8 @@
   </footer>
 
   <!-- Gallery modal -->
-  <div class="modal" id="gallery-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <!-- Letter modal: the photo on the left, the scanned handwritten letter on the right -->
+  <div class="modal" id="gallery-modal" role="dialog" aria-modal="true" aria-label="Letter to the bride" hidden>
     <div class="modal__backdrop" data-close></div>
     <div class="modal__dialog" role="document">
       <button class="modal__close icon-btn" type="button" aria-label="Close" data-close>
@@ -459,13 +459,10 @@
       <div class="modal__media">
         <img class="modal__img" src="" alt="">
       </div>
-      <div class="modal__content">
-        <p class="eyebrow">Little moments</p>
-        <h2 class="section-title modal__title" id="modal-title"></h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas faucibus mollis interdum. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-        <p>Vestibulum id ligula porta felis euismod semper. Cras mattis consectetur purus sit amet fermentum.</p>
+      <div class="modal__letter">
+        <a class="modal__letter-link" href="" target="_blank" rel="noopener" aria-label="Open the letter full size in a new tab">
+          <img class="modal__letter-img" src="" alt="">
+        </a>
       </div>
     </div>
   </div>
