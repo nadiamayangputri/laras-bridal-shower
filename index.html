@@ -414,13 +414,8 @@
       <div class="container container--narrow video__inner">
         <h2 class="section-title section-title--center">Before the next chapter.</h2>
         <div class="video__frame">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?rel=0"
-            title="Placeholder video"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
+          <!-- #t=0.1 makes browsers show the first frame instead of a blank box -->
+          <video class="video__player" src="assets/video/laras.mp4#t=0.1" controls playsinline preload="metadata" width="1280" height="720" aria-label="A video for Laras"></video>
         </div>
       </div>
     </section>

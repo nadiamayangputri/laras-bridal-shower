@@ -287,10 +287,33 @@
 
     const play = () => audio.play().then(removeUnlock).catch(() => {});
 
-    // first interaction anywhere on the page starts the music (unless it was the toggle itself)
+    const video = document.querySelector('.video__player');
+    let pausedForVideo = false;
+
+    // first interaction anywhere on the page starts the music
+    // (not when it's the toggle itself, or the video, which has its own sound)
     function unlock(event) {
       if (pausedByVisitor || musicToggle.contains(event.target)) return;
+      if (video && (video.contains(event.target) || !video.paused)) return;
       play();
+    }
+
+    // the music steps aside while the video plays, then comes back
+    if (video) {
+      video.addEventListener('play', () => {
+        if (!audio.paused) {
+          pausedForVideo = true;
+          audio.pause();
+        }
+      });
+
+      const resumeAfterVideo = () => {
+        if (pausedForVideo && !pausedByVisitor) play();
+        pausedForVideo = false;
+      };
+
+      video.addEventListener('pause', resumeAfterVideo);
+      video.addEventListener('ended', resumeAfterVideo);
     }
 
     audio.volume = 0.6;
@@ -301,6 +324,8 @@
       removeUnlock();
       if (audio.paused) {
         pausedByVisitor = false;
+        pausedForVideo = false;
+        if (video && !video.paused) video.pause();
         play();
       } else {
         pausedByVisitor = true;
